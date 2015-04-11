@@ -7,7 +7,7 @@
 
 var Thing = require('../api/thing/thing.model');
 var User = require('../api/user/user.model');
-
+var Tracker = require('../api/tracker/tracker.model')
 Thing.find({}).remove(function() {
   Thing.create({
     name : 'Development Tools',
@@ -46,4 +46,16 @@ User.find({}).remove(function() {
       console.log('finished populating users');
     }
   );
+});
+
+Tracker.find({}).remove(function() {
+  Tracker.create({
+    first: 'John',
+    last: 'Doe',
+    address: 'Drury Lane',
+    IP: '192.168.1.1',
+    DOB: '9/9/99',
+    location: [1,2],
+    active: false
+  });
 });
