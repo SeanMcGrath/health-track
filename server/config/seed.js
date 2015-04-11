@@ -52,9 +52,11 @@ Tracker.find({}).remove(function() {
   Tracker.create({
     first: 'John',
     last: 'Doe',
+    info: 'Cancer Patient',
     address: 'Drury Lane',
     IP: '192.168.1.1',
     DOB: '9/9/99',
+    serial: 1,
     location: [1,2],
     active: false
   });

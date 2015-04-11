@@ -4,10 +4,13 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var TrackerSchema = new Schema({
-  name: String,
+  first: String,
+  last: String,
   address: String,
   IP: String,
   DOB: String,
+  info: String,
+  serial: String,
   location: [],
   active: Boolean
 });
