@@ -31,6 +31,10 @@
 
 .tracker-list {
 
+    li.editable {
+        border-color: black;
+    }
+
     .edit {
         span {
             margin-right: 1em;

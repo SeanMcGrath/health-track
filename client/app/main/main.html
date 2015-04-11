@@ -5,11 +5,14 @@
   <div class="row">
     <div class="col-lg-12">
       <ul class="list-group tracker-list">
-        <li class="list-group-item" ng-repeat="tracker in trackers">
-            <strong>{{tracker.first}} {{tracker.last}}</strong><br>
+        <li class="list-group-item" ng-repeat="tracker in trackers" ng-class="{editable: tracker.editable}">
+            <strong ng-hide="tracker.editable">{{tracker.first}} {{tracker.last}}</strong>
+            <input type="text" ng-model="tracker.first" ng-show="tracker.editable"/>
+            <input type="text" ng-model="tracker.last" ng-show="tracker.editable"/>
+            <br>
             <span class="text-muted">Location: {{tracker.location}}</span>
             <a class="trash" ng-click="deleteTracker(tracker)"><span class="glyphicon glyphicon-trash pull-right"></span></a>
-            <a class="edit"><span class="glyphicon glyphicon-pencil pull-right"></span></a>
+            <a class="edit" ng-click="tracker.editable = !tracker.editable; updateTracker(tracker)"><span class="glyphicon glyphicon-pencil pull-right"></span></a>
         </li>
       </ul>
     </div>
