@@ -62,7 +62,7 @@ exports.getUpdate = function(req, res) {
     var d = new Date();
     var location = {time: d.toISOString(), latitude: req.query.lat, longitude: req.query.long};
     var temp = {time: d.toISOString(), temperature: req.query.temp};
-    if(!tracker){
+    if(!tracker) {
       Tracker.create({
         first: 'NULL',
         last: 'NULL',
@@ -74,11 +74,9 @@ exports.getUpdate = function(req, res) {
         return res.json(201, tracker);
       });
     }
-    else{
+    else {
       tracker.temperature.push(temp);
       tracker.location.push(location);
-      tracker.IP = req.connection.remoteAddress;
-      console.log(tracker);
       tracker.save(function(err) {
         if (err) { return handleError(res, err); }
         return res.json(200, {
