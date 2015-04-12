@@ -3,7 +3,7 @@
 angular.module('healthTrackApp')
   .controller('NavbarCtrl', function ($scope, $location, Auth) {
     $scope.menu = [{
-      'title': 'Home',
+      'title': 'View Trackers',
       'link': '/'
     }];
 

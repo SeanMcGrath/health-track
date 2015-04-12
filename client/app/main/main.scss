@@ -1,32 +1,25 @@
-.thing-form {
-    margin: 20px 0;
-}
-
-#banner {
-    border-bottom: none;
-    margin-top: -20px;
-}
-
-#banner h1 {
-    font-size: 60px;
-    line-height: 1;
-    letter-spacing: -1px;
-}
-
-.hero-unit {
-    position: relative;
-    padding: 30px 15px;
-    color: #F5F5F5;
-    text-align: center;
-    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
-    background: #4393B9;
+.page-wrapper {
+    height: 100%;
 }
 
 .footer {
+    width: 100%;
+    z-index: 1030;
+    margin: 0px;
+    clear: both;
+    position: absolute;
+    bottom: 2px;
+    left: 0px;
     text-align: center;
-    padding: 30px 0;
-    margin-top: 70px;
     border-top: 1px solid #E5E5E5;
+    max-height: 50px;
+    background: white;
+
+    p {
+        line-height: 50px;
+        -webkit-margin-before: 0px;
+        -webkit-margin-after: 0px;
+    }
 }
 
 .tracker-list {
