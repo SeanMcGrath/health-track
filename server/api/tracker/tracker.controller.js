@@ -55,16 +55,42 @@ exports.destroy = function(req, res) {
 };
 
 exports.getUpdate = function(req, res) {
-  console.log(req.query);
-  res.send(200);
-  // Tracker.findOne({serial: req.query.macid}, function(tracker){
-  //   var d = new Date()
-  //   var location = {time: d.toISOString(), latitude: req.query.loc_lat, longitude: req.query.loc_long};
-  //   var temp = {time: d.toISOString(), temperature: req.query.temp};
-  //   tracker.temp.append(temp);
-  //   tracker.IP = req.connection.remoteAddress;
-  // })
-}
+  Tracker.findOne({macid: req.query.macid}, function(err, tracker){
+    if(err) { return handleError(res, err); }
+    console.log(req.query);
+    var d = new Date();
+    var location = {time: d.toISOString(), latitude: req.query.lat, longitude: req.query.long};
+    var temp = {time: d.toISOString(), temperature: req.query.temp};
+    if(!tracker){
+      Tracker.create({
+        first: 'NULL',
+        last: 'NULL',
+        location: [location],
+        temperature: [temp],
+        macid: req.query.macid,
+      }, function(err, tracker) {
+        if(err) { return handleError(res, err); }
+        return res.json(201, tracker);
+      });
+    }
+    else{
+      tracker.temperature.push(temp);
+      tracker.location.push(location);
+      tracker.IP = req.connection.remoteAddress;
+      console.log(tracker);
+      tracker.save(function(err) {
+        if (err) { return handleError(res, err); }
+        return res.json(200, {
+          first: tracker.first,
+          last: tracker.last,
+          address: tracker.address,
+          info: tracker.info,
+          DOB: tracker.DOB
+        });
+      });
+    }
+  });
+};
 
 function handleError(res, err) {
   return res.send(500, err);

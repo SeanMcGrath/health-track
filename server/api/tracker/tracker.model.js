@@ -10,9 +10,9 @@ var TrackerSchema = new Schema({
   IP: String,
   DOB: String,
   info: String,
-  serial: String,
+  macid: String,
+  temperature: [],
   location: [],
-  active: Boolean
 });
 
 module.exports = mongoose.model('Tracker', TrackerSchema);

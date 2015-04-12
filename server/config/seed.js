@@ -34,9 +34,8 @@ Tracker.find({}).remove(function() {
     address: 'Drury Lane',
     IP: '192.168.1.1',
     DOB: '9/9/99',
-    serial: '11:22:33:44:55',
-    location: [1,2],
+    macid: '11:22:33:44:55',
+    location: [],
     temperature: [],
-    active: false
   });
 });
