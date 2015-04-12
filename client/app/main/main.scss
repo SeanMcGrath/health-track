@@ -1,19 +1,21 @@
-.page-wrapper {
+html,
+body {
     height: 100%;
+    padding: 0;
+    margin: 0px;
+}
+
+.page {
+    padding-top: 60px;
 }
 
 .footer {
     width: 100%;
-    z-index: 1030;
-    margin: 0px;
-    clear: both;
-    position: absolute;
-    bottom: 2px;
-    left: 0px;
     text-align: center;
     border-top: 1px solid #E5E5E5;
     max-height: 50px;
     background: white;
+    background-color: #f8f8f8;
 
     p {
         line-height: 50px;
@@ -26,6 +28,10 @@
 
     li.editable {
         border-color: black;
+
+        input {
+            margin: 2px;
+        }
     }
 
     .edit {

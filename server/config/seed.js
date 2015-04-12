@@ -36,5 +36,6 @@ Tracker.find({}).remove(function() {
     macid: '11:22:33:44:55',
     location: [],
     temperature: [],
+    editable: false
   });
 });

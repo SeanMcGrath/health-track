@@ -54,10 +54,11 @@ exports.destroy = function(req, res) {
   });
 };
 
+// Allows trackers to update/register themselves in the DB
+// with a GET request.
 exports.getUpdate = function(req, res) {
   Tracker.findOne({macid: req.query.macid}, function(err, tracker){
     if(err) { return handleError(res, err); }
-    console.log(req.query);
     var d = new Date();
     var location = {time: d.toISOString(), latitude: req.query.lat, longitude: req.query.long};
     var temp = {time: d.toISOString(), temperature: req.query.temp};

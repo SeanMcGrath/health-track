@@ -5,16 +5,11 @@ angular.module('healthTrackApp')
     $scope.awesomeThings = [];
     $scope.trackers = [];
 
-    $http.get('/api/things').success(function(awesomeThings) {
-      $scope.awesomeThings = awesomeThings;
-      socket.syncUpdates('thing', $scope.awesomeThings);
-    });
-
     $http.get('/api/trackers').success(function(trackers) {
       $scope.trackers = trackers;
-      trackers.forEach(function(tracker){
-        tracker.editable = false;
-      });
+      // trackers.forEach(function(tracker){
+      //   tracker.editable = false;
+      // });
       socket.syncUpdates('tracker', $scope.trackers);
     });
 
@@ -23,9 +18,13 @@ angular.module('healthTrackApp')
     };
 
     $scope.updateTracker = function(tracker) {
-      if(!tracker.editable){
-        $http.put('/api/trackers/' + tracker._id, tracker);
+      if(tracker.editable){
+        socket.unsyncUpdates('tracker')
       }
+      else{
+        socket.syncUpdates('tracker', $scope.trackers);
+      }
+      $http.put('/api/trackers/' + tracker._id, tracker);
     };
 
     $scope.$on('$destroy', function () {

@@ -7,12 +7,12 @@ var TrackerSchema = new Schema({
   first: String,
   last: String,
   address: String,
-  IP: String,
   DOB: String,
   info: String,
   macid: String,
   temperature: [],
   location: [],
+  editable: Boolean
 });
 
 module.exports = mongoose.model('Tracker', TrackerSchema);
