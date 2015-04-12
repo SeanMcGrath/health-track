@@ -54,6 +54,18 @@ exports.destroy = function(req, res) {
   });
 };
 
+exports.getUpdate = function(req, res) {
+  console.log(req.query);
+  res.send(200);
+  // Tracker.findOne({serial: req.query.macid}, function(tracker){
+  //   var d = new Date()
+  //   var location = {time: d.toISOString(), latitude: req.query.loc_lat, longitude: req.query.loc_long};
+  //   var temp = {time: d.toISOString(), temperature: req.query.temp};
+  //   tracker.temp.append(temp);
+  //   tracker.IP = req.connection.remoteAddress;
+  // })
+}
+
 function handleError(res, err) {
   return res.send(500, err);
 }
