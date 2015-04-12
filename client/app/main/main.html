@@ -1,5 +1,5 @@
 <div class="container">
-  <span class="header">Registered Trackers</span>
+  <span class="header">{{trackers.length}} Registered Tracker<span ng-hide="trackers.length === 1">s</span></span>
   <input class="filter pull-right" ng-model="search" type="search" placeholder="Filter"/>
   <span class="glyphicon glyphicon-search pull-right search"></span>
   <br>
