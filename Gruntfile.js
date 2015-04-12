@@ -23,6 +23,8 @@ module.exports = function (grunt) {
   // Time how long tasks take. Can help when optimizing build times
   require('time-grunt')(grunt);
 
+  var pkg = grunt.file.readJSON('package.json');
+
   // Define the configuration for all the tasks
   grunt.initConfig({
 
@@ -542,9 +544,25 @@ module.exports = function (grunt) {
         }
       }
     },
+    shell: {
+      push: {
+        command: function() {
+          grunt.log.writeln('Pushing ' + pkg.name + ' to bluemix');
+          return 'cd dist ;cf push '+ pkg.name + ' --no-manifest --no-start -c "NODE_ENV=production node app.js"' ;
+        }
+      },
+      start: {
+        command: function() {
+          grunt.log.writeln('Start ' + pkg.name);
+          return 'cf start ' + pkg.name;
+        }
+      }
+    }
   });
 
   // Used for delaying livereload until after server has restarted
+  grunt.loadNpmTasks('grunt-shell');
+
   grunt.registerTask('wait', function () {
     grunt.log.ok('Waiting for server reload...');
 
@@ -663,5 +681,11 @@ module.exports = function (grunt) {
     'newer:jshint',
     'test',
     'build'
+  ]);
+
+  grunt.registerTask('bluemix', [
+    'build',
+    'shell:push',
+    'shell:start'
   ]);
 };

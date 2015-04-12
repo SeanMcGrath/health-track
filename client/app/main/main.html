@@ -12,7 +12,7 @@
             <br>
             DOB: <span ng-hide="tracker.editable">{{tracker.DOB}}</span><input type="text" ng-model="tracker.DOB" ng-show="tracker.editable"/>
             | Info: <span ng-hide="tracker.editable">{{tracker.info}}</span><input type="text" ng-model="tracker.info" ng-show="tracker.editable"/>
-            | Location: [{{tracker.location[tracker.location.length-1].latitude}},{{tracker.location[tracker.location.length-1].longitude}}]
+            | Location: <span ng-show="tracker.location.length">[{{tracker.location[tracker.location.length-1].latitude}},{{tracker.location[tracker.location.length-1].longitude}}]</span>
             <a class="trash" ng-click="deleteTracker(tracker)"><span class="glyphicon glyphicon-trash pull-right"></span></a>
             <a class="edit" ng-click="tracker.editable = !tracker.editable; updateTracker(tracker)"><span class="glyphicon glyphicon-pencil pull-right"></span></a>
         </li>

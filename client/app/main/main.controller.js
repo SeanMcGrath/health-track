@@ -26,7 +26,7 @@ angular.module('healthTrackApp')
       if(!tracker.editable){
         $http.put('/api/trackers/' + tracker._id, tracker);
       }
-    }
+    };
 
     $scope.$on('$destroy', function () {
       socket.unsyncUpdates('tracker');
