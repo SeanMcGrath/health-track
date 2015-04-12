@@ -7,6 +7,7 @@ body {
 
 .page {
     padding-top: 60px;
+    padding-bottom: 60px;
 }
 
 .footer {
@@ -26,11 +27,21 @@ body {
 
 .tracker-list {
 
-    li.editable {
-        border-color: black;
+    li {
+        line-height: 2em;
+        border: 1 px solid gray;
+
+        &.editable {
+            background-color: #f8f8f8;
+        }
 
         input {
+            line-height: 1em;
             margin: 2px;
+
+            &.DOB {
+                max-width: 6em;
+            }
         }
     }
 
