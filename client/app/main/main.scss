@@ -38,6 +38,15 @@ body {
         input {
             line-height: 1em;
             margin: 2px;
+            background-color: white;
+            border-width: 0 0 1px 0;
+            border-color: solid #444;
+            box-shadow: none;
+
+            &:focus {
+                border-width: 0 0 1px 0;
+
+            }
 
             &.DOB {
                 max-width: 6em;
