@@ -1,9 +1,12 @@
 <div class="container">
-  <h2>Registered Trackers</h2>
+  <span class="header">Registered Trackers</span>
+  <input class="filter pull-right" ng-model="search" type="search" placeholder="Filter"/>
+  <span class="glyphicon glyphicon-search pull-right search"></span>
+  <br>
   <div class="row">
     <div class="col-lg-12">
       <ul class="list-group tracker-list">
-        <li class="list-group-item col-sm-6 col-xl-4" ng-repeat="tracker in trackers" ng-class="{editable: tracker.editable}">
+        <li class="list-group-item col-sm-6 col-xl-4" ng-repeat="tracker in trackers | filter:filterBySearch" ng-class="{editable: tracker.editable}">
             <strong>{{tracker.macid}}: </strong><strong ng-hide="tracker.editable">{{tracker.first}} {{tracker.last}}</strong>
             <input type="text" ng-model="tracker.first" ng-show="tracker.editable"/>
             <input type="text" ng-model="tracker.last" ng-show="tracker.editable"/>

@@ -1,5 +1,9 @@
 'use strict';
 
+function escapeRegExp(string){
+    return string.replace(/([.*+?^=!:${}()|\[\]\/\\])/g, "\\$1");
+}
+
 angular.module('healthTrackApp')
   .controller('MainCtrl', function ($scope, $http, socket) {
     $scope.awesomeThings = [];
@@ -7,9 +11,6 @@ angular.module('healthTrackApp')
 
     $http.get('/api/trackers').success(function(trackers) {
       $scope.trackers = trackers;
-      // trackers.forEach(function(tracker){
-      //   tracker.editable = false;
-      // });
       socket.syncUpdates('tracker', $scope.trackers);
     });
 
@@ -30,4 +31,15 @@ angular.module('healthTrackApp')
     $scope.$on('$destroy', function () {
       socket.unsyncUpdates('tracker');
     });
+
+    $scope.search = ''
+    var regex;
+    $scope.$watch('search', function (value) {
+        regex = new RegExp('\\b' + escapeRegExp(value), 'i');
+    });
+
+    $scope.filterBySearch = function(tracker) {
+        if (!$scope.search) return true;
+        return regex.test(tracker.first + ' ' + tracker.last);
+    };
   });
